@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" vc:minVersion="1.1"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+
+    <xs:element name="study">
+        <xs:complexType>
+            <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="name" type="xs:string" maxOccurs="1"/>
+                <xs:element name="n_populations" type="xs:positiveInteger" maxOccurs="1"> </xs:element>
+                <xs:element name="n_individuals" type="xs:positiveInteger" maxOccurs="1"> </xs:element>
+                <xs:element name="n_loci" maxOccurs="1" type="xs:positiveInteger"> </xs:element>
+                <xs:element name="loci" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="locus" type="xs:string" maxOccurs="unbounded">
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="populations" maxOccurs="1" minOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="population" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+
+                                        <xs:element name="name" maxOccurs="1" type="xs:string"
+                                            minOccurs="1"/>
+                                        <xs:element name="ID" maxOccurs="1" minOccurs="1"
+                                            type="xs:positiveInteger"> </xs:element>
+                                        <xs:element name="n_individuals" maxOccurs="1"
+                                            type="xs:positiveInteger"> </xs:element>
+                                        <xs:element name="individuals">
+                                            <xs:complexType>
+                                                <xs:sequence>
+
+                                                  <xs:element maxOccurs="unbounded"
+                                                  name="individual">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="name" type="xs:string"
+                                                  maxOccurs="1" minOccurs="1"> </xs:element>
+                                                  <xs:element name="locus" minOccurs="1"
+                                                  maxOccurs="unbounded" type="xs:boolean"> </xs:element>
+                                                  <xs:element minOccurs="0" name="coordinates">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="longitude" type="xs:float"/>
+                                                  <xs:element name="latitude" type="xs:float"/>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element name="ID" type="xs:positiveInteger"/>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:assert test="count(individuals/individual) = n_individuals"
+                                    />
+                                </xs:complexType>
+                                <xs:unique name="uniqueID">
+                                    <xs:selector xpath="ID"/>
+                                    <xs:field xpath="."/>
+                                </xs:unique>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                    <xs:unique name="uniqueName">
+                        <xs:selector xpath="population/name"/>
+                        <xs:field xpath="."/>
+                    </xs:unique>
+                    <xs:unique name="uniqueIndividualName">
+                        <xs:selector xpath="population/individuals/individual/name"/>
+                        <xs:field xpath="."/>
+                    </xs:unique>
+                    <xs:unique name="uniqueIndividualID">
+                        <xs:selector xpath="population/individuals/individual/ID"/>
+                        <xs:field xpath="."/>
+                    </xs:unique>
+                </xs:element>
+            </xs:sequence>
+            <xs:assert test="count(populations/population) = n_populations"/>
+            <xs:assert test="count(populations/population/individuals/individual) = n_individuals"/>
+            <xs:assert test="count(loci/locus) = n_loci"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
