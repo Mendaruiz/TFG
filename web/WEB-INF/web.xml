@@ -23,7 +23,7 @@
     </servlet>
     <servlet>
         <servlet-name>formulario</servlet-name>
-        <servlet-class>herra.formulario</servlet-class>
+        <servlet-class>Herramienta.formulario</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
