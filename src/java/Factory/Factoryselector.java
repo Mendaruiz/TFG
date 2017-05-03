@@ -32,8 +32,14 @@ public class Factoryselector {
     
     public static herramienta getHerramientaSalida(String salida, File fichero){
 
-        if(salida.equals("geneland")){
+        if(salida.equals("genalex")){
+            return new genalex(null,fichero);
+        } 
+        else if (salida.equals("geneland")){
             return new geneland(null,fichero);
+        }
+        else if(salida.equals("genepop")){
+            return new genepop(null, fichero);
         }
         return null;
     }

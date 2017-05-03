@@ -144,7 +144,6 @@ public class geneland implements herramienta{
         File archivo = null;
         
         //Inicialización del documento de xslt
-        
         //Source xsl = new StreamSource("C:\\Users\\David\\Desktop\\TFG\\PopXML\\PopXML\\XSLTs\\adegenet.xsl");
         try {
             //Aplicacion de la hoja de estilo.
@@ -158,6 +157,7 @@ public class geneland implements herramienta{
         } catch (Exception ex) {
             ex.printStackTrace();
         } 
-        return archivo;}
+        return archivo;
+    }
     
 }
