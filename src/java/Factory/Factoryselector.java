@@ -16,30 +16,30 @@ import java.util.List;
 public class Factoryselector {
     
     
-    public static herramienta getHerramientaEntrada(String entrada, File fichero){
+    public static Herramienta getHerramientaEntrada(String entrada, File fichero){
         
         if(entrada.equals("genalex")){
-            return new genalex(fichero,null);
+            return new Genalex(fichero,null);
         } 
         else if (entrada.equals("geneland")){
-            return new geneland(fichero,null);
+            return new Geneland(fichero,null);
         }
         else if(entrada.equals("genepop")){
-            return new genepop(fichero, null);
+            return new Genepop(fichero, null);
         }
         return null;
     }
     
-    public static herramienta getHerramientaSalida(String salida, File fichero){
+    public static Herramienta getHerramientaSalida(String salida, File fichero){
 
         if(salida.equals("genalex")){
-            return new genalex(null,fichero);
+            return new Genalex(null,fichero);
         } 
         else if (salida.equals("geneland")){
-            return new geneland(null,fichero);
+            return new Geneland(null,fichero);
         }
         else if(salida.equals("genepop")){
-            return new genepop(null, fichero);
+            return new Genepop(null, fichero);
         }
         return null;
     }
